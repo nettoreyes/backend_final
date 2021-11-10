@@ -21,6 +21,8 @@ app.set("view engine", "ejs")
 //3-middlewares
 app.use(cors(`${config.CORS}`));
 
+
+
 //4-variables globales
 const PORT = config.PORT;
 

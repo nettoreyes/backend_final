@@ -4,9 +4,17 @@ const carrito = require("../components/carrito");
 
 
 module.exports = ( app ) => {
-  
 
-    productos( app );
+    // app.use((req, res, next) => {
+    //     res.status(404).json({
+    //         titulo: "404",
+    //         descripcion: "Sitio no encontrado"
+    //     })
+    // })
+
+    const ADMINISTRADOR = true; //para usar en rutas de administrador
+
+    productos( app, ADMINISTRADOR );
     carrito( app );
 
 
