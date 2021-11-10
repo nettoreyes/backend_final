@@ -1,0 +1,1 @@
+[{"title":"otro producto","price":10990,"thumbnail":"https://cdn3.abcasdas56.png","id":1},{"title":"otro producto mas","price":1000,"thumbnail":"https://cdn3.abcasdas56.png","id":2},{"title":"producto 3","price":3000,"thumbnail":"https://cdn3.abcasdas56.png","id":4}]
