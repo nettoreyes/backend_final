@@ -3,6 +3,7 @@ const contenedorProductos = document.querySelector('#contenedorProductos');
 const alerta = document.querySelector('#alerta');
 const cantidadCarrito = document.querySelector('#cantidadCarrito');
 const idCarrito = document.querySelector('#idCarrito');
+const tablaProductosCarro = document.querySelector('#tablaProductosCarro');
 alerta.classList.add("d-none");
 
 
@@ -117,6 +118,86 @@ const creaCarro = ( producto ) => {
         alerta.classList.add("d-none");
     }, 2000);
 
+}
+
+const cargaProductosCarro = () => {
+    tablaProductosCarro.innerHTML = ``;
+
+    if(idCarrito.innerHTML.length > 0){
+        fetch('http://localhost:8080/api/carrito/'+ idCarrito.innerHTML +'/productos/')
+        .then(res => res.json())
+        .then(data => {
+            if(data){
+                data.forEach(producto => {
+                    tablaProductosCarro.innerHTML += 
+                    `<tr>
+                        <th scope="row">1</th>
+                        <td>${ producto.sku }</td>
+                        <td>${ producto.nombre }</td>
+                        <td class="text-center">1</td>
+                        <td class="text-end">$ ${ producto.precio }</td>
+                        <td class="text-end">$ ${ producto.precio }</td>
+                        <td class="text-center"><button type="button" class="btn btn-sm btn-danger" onclick="quitarProductoCarro( ${ producto.id } )"> X </button></td>
+                    </tr>`;
+                });
+            }else{
+                tablaProductosCarro.innerHTML += `<tr>
+                    <th scope="row" colspan="7" class="text-center">SIN PRODUCTOS</th>
+                </tr>`;
+            }
+        });
+    }else{
+        tablaProductosCarro.innerHTML += `<tr>
+            <th scope="row" colspan="7" class="text-center">SIN PRODUCTOS</th>
+        </tr>`;
+    }
+}
+
+const quitarProductoCarro = ( idProducto ) => {
+    fetch(`http://localhost:8080/api/carrito/`+ idCarrito.innerHTML +`/productos/${ idProducto }`, {
+        method: 'DELETE',
+    })
+    .then(res => res.json())
+    .then(data => { 
+
+        if(data.ok){            
+            alerta.innerHTML = `${ data.ok }`;
+            cargaProductosCarro();
+        }else{
+            alerta.innerHTML = `Error: ${ data.descripcion }`;
+        }
+        
+    });
+}
+
+const eliminaCarrito = ( ) => {
+    fetch(`http://localhost:8080/api/carrito/`+ idCarrito.innerHTML, {
+        method: 'DELETE',
+    })
+    .then(res => res.json())
+    .then(data => {
+        
+        alerta.classList.remove("d-none");
+
+        if(data.ok){            
+            idCarrito.innerHTML = ``;
+            cantidadCarrito.innerHTML = "0";
+            tablaProductosCarro.innerHTML = ``;
+            alerta.innerHTML = `${ data.ok }`;
+
+            tablaProductosCarro.innerHTML += `<tr>
+                <th scope="row" colspan="7" class="text-center">SIN PRODUCTOS</th>
+            </tr>`;
+
+            setTimeout(() => { 
+                alerta.classList.add("d-none");
+            }, 2000);
+            
+        }else{
+            alerta.innerHTML = `Error: ${ data.descripcion }`;
+        }
+        
+    });
 }
 
 //guardo productos

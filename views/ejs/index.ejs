@@ -23,7 +23,7 @@
             <% if (tipoUsuario){ %> 
             <button type="button" class="btn btn-primary col-2" data-bs-toggle="modal" data-bs-target="#exampleModal">Crear Producto</button> 
             <% } else{ %> 
-            <button type="button" class="btn btn-success col-3" data-bs-toggle="modal" data-bs-target="#carroModal"><span id="idCarrito" class="badge bg-secondary"></span> Carrito <span id="cantidadCarrito" class="badge bg-danger">0</span></button> 
+            <button type="button" class="btn btn-success col-3" data-bs-toggle="modal" data-bs-target="#carroModal" onclick=" cargaProductosCarro() "><span id="idCarrito" class="badge bg-secondary"></span> Carrito <span id="cantidadCarrito" class="badge bg-danger">0</span></button> 
             <% } %>
             
             
@@ -81,18 +81,31 @@
 
     <!-- Modal CARRO-->
     <div class="modal fade" id="carroModal" tabindex="-1" aria-labelledby="carroModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="carroModalLabel">Carrito de compras</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">                    
-                    Carrito
+                    <table class="table table-sm table-dark table-striped">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Sku</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col">Total</th>
+                            <th scope="col">Eliminar</th>
+                          </tr>
+                        </thead>
+                        <tbody id="tablaProductosCarro"></tbody>
+                      </table>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Salir</button>
-                    <button type="button" class="btn btn-primary" id="btnGuardaProducto">Guardar</button>
+                    <button type="button" class="btn btn-primary" onclick="eliminaCarrito()">Eliminar Carrito</button>
                 </div>
             </div>
         </div>
