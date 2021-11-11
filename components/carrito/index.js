@@ -65,6 +65,7 @@ module.exports = ( app ) => {
     //agregar productos al carrito
     router.post('/:id/productos', async (req, res) => {         
         
+        console.log("llego id ", req.params.id);
         //capturo el id del carro
         let idCarro =  req.params.id;          
 

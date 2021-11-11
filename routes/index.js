@@ -12,7 +12,7 @@ module.exports = ( app ) => {
     //     })
     // })
 
-    const ADMINISTRADOR = true; //para usar en rutas de administrador
+    const ADMINISTRADOR = false; //para usar en rutas de administrador
 
     productos( app, ADMINISTRADOR );
     carrito( app );
@@ -20,5 +20,9 @@ module.exports = ( app ) => {
 
     app.get("/", (req, res) => {
         res.send("Todo ok desde el inicio!");
+    });
+
+    app.get("/frontend", (req, res) => {
+        res.render('index', { tipoUsuario : ADMINISTRADOR });
     });
 }
