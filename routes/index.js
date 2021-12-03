@@ -1,20 +1,19 @@
 const user = require("../components/users");
 const productos = require("../components/productos");
 const carrito = require("../components/carrito");
-
+const DatabaseMongoDB = require('../config/DatabaseMongoDB');
+const conexionMongoDB = new DatabaseMongoDB();
+const { config } = require("../config/");
+//const ContenedorMongo = require("../models/ContenedorMongoDb");
+//const contenedorMongoDB = new ContenedorMongo();
 
 module.exports = ( app ) => {
 
-    // app.use((req, res, next) => {
-    //     res.status(404).json({
-    //         titulo: "404",
-    //         descripcion: "Sitio no encontrado"
-    //     })
-    // })
+    
+    //contenedorMongoDB.conexionBD();
+    conexionMongoDB.abrirConexionBD();
 
-    const ADMINISTRADOR = false; //para usar en rutas de administrador
-
-    productos( app, ADMINISTRADOR );
+    productos( app );
     carrito( app );
 
 
@@ -23,6 +22,6 @@ module.exports = ( app ) => {
     });
 
     app.get("/frontend", (req, res) => {
-        res.render('index', { tipoUsuario : ADMINISTRADOR });
+        res.render('index', { tipoUsuario : config.USUARIO_ADMINISTRADOR });
     });
 }

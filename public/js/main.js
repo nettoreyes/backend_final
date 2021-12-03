@@ -21,12 +21,12 @@ const cargaProductos = () => {
                     <div class="card-body">
                         <p class="card-text">Codigo: ${ element.sku }</p>
                         <h5 class="card-title">${ element.nombre }</h5>
-                        <p class="card-text">${ element.descripcion }</p>
+                        <p class="card-text">${ element.descripcion }</p>                       
                         <h6 class="card-title">$ ${ element.precio }</h6>
                         <div class="text-center">                            
-                            <button type="button" class="btn btn-primary btn-sm ${ ( tipoUsuario === 'ADMINISTRADOR' ? 'd-none' : '' ) } " onclick="agregarAlCarro( ${ element.id } )">Agregar al Carro</button>
-                            <button type="button" class="btn btn-success btn-sm ${ ( tipoUsuario === 'CLIENTE' ? 'd-none' : '' ) } " onclick="editaProducto( ${ element.id } )" data-bs-toggle="modal" data-bs-target="#exampleModal" >Editar</button>
-                            <button type="button" class="btn btn-danger btn-sm ${ ( tipoUsuario === 'CLIENTE' ? 'd-none' : '' ) }" onclick="eliminaProducto( ${ element.id } )" >Eliminar</button>                            
+                            <button type="button" class="btn btn-primary btn-sm ${ ( tipoUsuario === 'ADMINISTRADOR' ? 'd-none' : '' ) } " onclick="agregarAlCarro(${ element._id })">Agregar al Carro</button>
+                            <button type="button" class="btn btn-success btn-sm ${ ( tipoUsuario === 'CLIENTE' ? 'd-none' : '' ) } " onclick="editaProducto('${element._id}') " data-bs-toggle="modal" data-bs-target="#exampleModal" >Editar</button>
+                            <button type="button" class="btn btn-danger btn-sm ${ ( tipoUsuario === 'CLIENTE' ? 'd-none' : '' ) }" onclick="eliminaProducto('${element._id}') " >Eliminar</button>                            
                         </div>
                     </div>
                 </div>
@@ -35,17 +35,16 @@ const cargaProductos = () => {
     });
 }
 
-const editaProducto = ( idProducto ) => {
-
-    fetch(`http://localhost:8080/api/productos/${ idProducto }`)
+const editaProducto = (idProducto) => {    
+    fetch(`http://localhost:8080/api/productos/${idProducto}`)
     .then(res => res.json())
-    .then(producto => {   
-        document.querySelector('#id').value = producto.id;
-        document.querySelector('#nombre').value = producto.nombre;
-        document.querySelector('#sku').value = producto.sku;
-        document.querySelector('#descripcion').value = producto.descripcion;
-        document.querySelector('#precio').value = producto.precio;
-        document.querySelector('#urlImage').value = producto.urlImage;           
+    .then(producto => {          
+        document.querySelector('#id').value = producto[0]._id;
+        document.querySelector('#nombre').value = producto[0].nombre;
+        document.querySelector('#sku').value = producto[0].sku;
+        document.querySelector('#descripcion').value = producto[0].descripcion;
+        document.querySelector('#precio').value = producto[0].precio;
+        document.querySelector('#urlImage').value = producto[0].urlImage;           
     });
 }
 
