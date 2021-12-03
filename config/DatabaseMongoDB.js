@@ -1,14 +1,12 @@
 const mongoose = require('mongoose');
-
+require("dotenv").config();
 
 module.exports = class DatabaseMongoDB {
 
     async abrirConexionBD (){
          try{
-             const user = "coderhouse";
-             const password = "Vb61nzHCf0H2QWUG";
-             const database = "ecommerce";
-             const URL = `mongodb+srv://${ user }:${ password }@cluster0.qi2jb.mongodb.net/${ database }?retryWrites=true&w=majority`;
+             
+            const URL = process.env.URL_MONGODB;
  
              let rta = await mongoose.connect(URL, {
                  useNewUrlParser: true,

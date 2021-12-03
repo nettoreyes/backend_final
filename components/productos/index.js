@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const router = new Router();
-const Contenedor = require("../../models/Contenedor");
-const contenedorProductos = new Contenedor('./productos.txt');
+//const Contenedor = require("../../models/Contenedor");
+//const contenedorProductos = new Contenedor('./productos.txt');
 let ProductosController = require('./controller/productoController');
 
 

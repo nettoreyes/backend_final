@@ -24,7 +24,7 @@ const cargaProductos = () => {
                         <p class="card-text">${ element.descripcion }</p>                       
                         <h6 class="card-title">$ ${ element.precio }</h6>
                         <div class="text-center">                            
-                            <button type="button" class="btn btn-primary btn-sm ${ ( tipoUsuario === 'ADMINISTRADOR' ? 'd-none' : '' ) } " onclick="agregarAlCarro(${ element._id })">Agregar al Carro</button>
+                            <button type="button" class="btn btn-primary btn-sm ${ ( tipoUsuario === 'ADMINISTRADOR' ? 'd-none' : '' ) } " onclick="agregarAlCarro('${element._id}')">Agregar al Carro</button>
                             <button type="button" class="btn btn-success btn-sm ${ ( tipoUsuario === 'CLIENTE' ? 'd-none' : '' ) } " onclick="editaProducto('${element._id}') " data-bs-toggle="modal" data-bs-target="#exampleModal" >Editar</button>
                             <button type="button" class="btn btn-danger btn-sm ${ ( tipoUsuario === 'CLIENTE' ? 'd-none' : '' ) }" onclick="eliminaProducto('${element._id}') " >Eliminar</button>                            
                         </div>
