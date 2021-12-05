@@ -39,12 +39,12 @@ const editaProducto = (idProducto) => {
     fetch(`http://localhost:8080/api/productos/${idProducto}`)
     .then(res => res.json())
     .then(producto => {          
-        document.querySelector('#id').value = producto[0]._id;
-        document.querySelector('#nombre').value = producto[0].nombre;
-        document.querySelector('#sku').value = producto[0].sku;
-        document.querySelector('#descripcion').value = producto[0].descripcion;
-        document.querySelector('#precio').value = producto[0].precio;
-        document.querySelector('#urlImage').value = producto[0].urlImage;           
+        document.querySelector('#id').value = producto._id;
+        document.querySelector('#nombre').value = producto.nombre;
+        document.querySelector('#sku').value = producto.sku;
+        document.querySelector('#descripcion').value = producto.descripcion;
+        document.querySelector('#precio').value = producto.precio;
+        document.querySelector('#urlImage').value = producto.urlImage;           
     });
 }
 
@@ -203,7 +203,7 @@ const eliminaCarrito = ( ) => {
 const creaProducto = document.getElementById("btnGuardaProducto");
 creaProducto.addEventListener("click", () => {
 
-    const id = document.querySelector('#id').value;
+    const _id = document.querySelector('#id').value;
     const nombre = document.querySelector('#nombre').value;
     const sku = document.querySelector('#sku').value;
     const descripcion = document.querySelector('#descripcion').value;
@@ -211,7 +211,7 @@ creaProducto.addEventListener("click", () => {
     const urlImage = document.querySelector('#urlImage').value;
 
     const nuevoProducto = {
-        id,
+        _id,
         nombre,
         sku,
         descripcion,
@@ -219,8 +219,8 @@ creaProducto.addEventListener("click", () => {
         urlImage
     };    
 
-    let url = ( parseInt(id) > 0 ? id : "" );
-    let metodo = ( parseInt(id) == 0 ? 'POST' : 'PUT' );
+    let url = ( _id.length > 1 ? _id : "" );
+    let metodo = (  _id == 0 ? 'POST' : 'PUT' );
     fetch(`http://localhost:8080/api/productos/${ url }`,
     {   
         headers:{'content-type' : 'application/json'},
@@ -229,7 +229,7 @@ creaProducto.addEventListener("click", () => {
     })
     .then(resp => resp.json())
     .then(data => {
-        document.querySelector('#id').value = '0';
+        document.querySelector('#id').value = '';
         document.querySelector('#nombre').value = '';
         document.querySelector('#sku').value = '';
         document.querySelector('#descripcion').value = '';
