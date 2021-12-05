@@ -17,9 +17,8 @@ class ProductoServicesMongoDB {
 
     async getId ( idProducto ){
         try{
-        let producto = await ProductoSchema.find({_id: idProducto });
-            console.log( producto );
-            return producto;
+        let producto = await ProductoSchema.find({_id: idProducto });            
+            return producto[0];
         }catch( error ){
             console.log( error );
             return null;

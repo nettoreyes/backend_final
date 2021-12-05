@@ -99,7 +99,7 @@ const creaCarro = ( producto ) => {
         fetch('http://localhost:8080/api/carrito/'+ idCarrito.innerHTML  +'/productos/',
         {   
             headers:{'content-type' : 'application/json'},
-            method:  'POST',
+            method:  'PUT',
             body : JSON.stringify(producto)
         })
         .then(resp => resp.json())
@@ -136,7 +136,7 @@ const cargaProductosCarro = () => {
                         <td class="text-center">1</td>
                         <td class="text-end">$ ${ producto.precio }</td>
                         <td class="text-end">$ ${ producto.precio }</td>
-                        <td class="text-center"><button type="button" class="btn btn-sm btn-danger" onclick="quitarProductoCarro( ${ producto.id } )"> X </button></td>
+                        <td class="text-center"><button type="button" class="btn btn-sm btn-danger" onclick="quitarProductoCarro('${ producto._id }')"> X </button></td>
                     </tr>`;
                 });
             }else{

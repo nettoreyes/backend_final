@@ -9,7 +9,7 @@ class ProductoController{
 
             if( id ){                
                 let productos = await ProductoServicesMongo.getId( id );
-                if( productos.length > 0)
+                if( productos )
                     res.json( productos );
                 else
                     res.json({'error': 'producto no entontrado'});
