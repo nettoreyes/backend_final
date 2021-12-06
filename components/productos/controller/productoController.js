@@ -9,8 +9,6 @@ class ProductoController{
             let id = req.params.id;  
             let productos;
 
-            console.log("conectada aaaa: ", config.TIPO_BD ); 
-
             if( id ){   
                 if(config.TIPO_BD === 'MONGO'){                    
                     productos = await ProductoServicesMongo.getId( id );
@@ -27,8 +25,7 @@ class ProductoController{
             }else{
                 
 
-                if(config.TIPO_BD === 'MONGO'){
-                    console.log("paso por mondo");
+                if(config.TIPO_BD === 'MONGO'){                   
                     productos = await ProductoServicesMongo.getAll();
                 }
                 if(config.TIPO_BD === 'FIREBASE'){                     

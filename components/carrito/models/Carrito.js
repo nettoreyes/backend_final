@@ -1,5 +1,5 @@
 module.exports =  class Carrito{
-    constructor(){        
+    constructor(){              
         this.timestamp = Date.now();
         this.productos = [];
     }

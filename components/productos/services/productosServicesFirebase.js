@@ -7,7 +7,6 @@ class ProductoServicesFirebase {
         this.query = db.collection('productos');
     }
 
-
     async getAll (){
         try{
             const querySnapShot = await this.query.get();
