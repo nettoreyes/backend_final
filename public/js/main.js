@@ -209,15 +209,27 @@ creaProducto.addEventListener("click", () => {
     const descripcion = document.querySelector('#descripcion').value;
     const precio = document.querySelector('#precio').value;
     const urlImage = document.querySelector('#urlImage').value;
-
-    const nuevoProducto = {
-        _id,
-        nombre,
-        sku,
-        descripcion,
-        precio,
-        urlImage
-    };    
+    let nuevoProducto;
+    
+    if( _id === 0 ){
+        nuevoProducto = {            
+            nombre,
+            sku,
+            descripcion,
+            precio,
+            urlImage
+        };    
+    }
+    else{
+        nuevoProducto = {
+            _id,
+            nombre,
+            sku,
+            descripcion,
+            precio,
+            urlImage
+        };  
+    }
 
     let url = ( _id.length > 1 ? _id : "" );
     let metodo = (  _id == 0 ? 'POST' : 'PUT' );

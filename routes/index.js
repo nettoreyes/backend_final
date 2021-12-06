@@ -7,8 +7,10 @@ const { config } = require("../config/");
 
 module.exports = ( app ) => {
     
-    //se abre conexion con mongoDB
-    conexionMongoDB.abrirConexionBD();
+    if(config.TIPO_BD == 'MONGO'){
+       //se abre conexion con mongoDB
+       conexionMongoDB.abrirConexionBD();
+    }
 
     //se crea ruta a productos
     productos( app );

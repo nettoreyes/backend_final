@@ -30,8 +30,9 @@ class ProductoServicesMongoDB {
             const productoBD = new ProductoSchema( producto );
             await productoBD.save();            
             return { 'ok' : 'registro guardado' };            
-        }catch( error ){            
-            return { 'error' : 'error al guardar' }
+        }catch( error ){     
+            console.log( error );
+            return { 'error' : 'error al guardar en mongo' }
         }
     }
 
